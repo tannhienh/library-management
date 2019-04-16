@@ -3,6 +3,22 @@
 // Compiler: g++, MSVS
 //---------------------------------------------------------------------------//
 
+# CPP102X_PROJECT_3_FX00819
+# Manage Library
+
+# Use Commands
+
+- Build:    
+~$ make
+
+- Run:
+~$ ./main
+
+- Remove files objects *.0 and excute file:
+~# make clean
+
+===============================================================================
+
 1. Information list of books was storage in Books.bin file
 2. Information list of borrows was storage in Borrows.bin file
 3. Books.bin and Borrows.bin was storage in folder Data
