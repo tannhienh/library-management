@@ -16,6 +16,9 @@
 - Remove files objects *.0 and excute file:
 ~# make clean
 
+- Remove data file:
+~# make clean-data
+
 ===============================================================================
 
 1. Information list of books was storage in Books.bin file
