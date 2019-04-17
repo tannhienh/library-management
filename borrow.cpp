@@ -31,7 +31,7 @@ Borrow::Borrow(char *Borrow_id, char *person_id, char *person_name,
   *borrow_status_ = *borrow_status;
 }
 
-// Ham huy ao
+// Ham huy
 Borrow::~Borrow() {}
 
 //----------------------------------------------------------------------//

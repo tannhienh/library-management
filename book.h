@@ -42,8 +42,8 @@ public:
   // Ham khoi tao co tham so
   Book(char *, char *, unsigned short, char *, char *, char *, int);
 
-  // Ham huy ao
-  virtual ~Book();
+  // Ham huy
+  ~Book();
 
   //------------------------------------------------------------------//
 

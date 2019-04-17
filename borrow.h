@@ -37,8 +37,8 @@ public:
   Borrow(char *, char *, char *, char *, char *, char *, char *, char *, char *,
          char *);
 
-  // Ham huy ao
-  virtual ~Borrow();
+  // Ham huy
+  ~Borrow();
 
   //----------------------------------------------------------------------//
 

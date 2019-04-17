@@ -23,7 +23,7 @@ Book::Book(char *book_id, char *book_title, unsigned short year,
   amount_ = amount;
 }
 
-// Ham huy ao
+// Ham huy
 Book::~Book() {}
 
 //------------------------------------------------------------------//
