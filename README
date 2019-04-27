@@ -24,7 +24,12 @@
 1. Information list of books was storage in Books.bin file
 2. Information list of borrows was storage in Borrows.bin file
 3. Books.bin and Borrows.bin was storage in folder Data
-4. File Books co du lieu mau nhu sau:
+4. Books.bin file has data template as below:
+
+Note:
+Data template was created by compiler GNU c++.
+So, If want build with MSVS (on Windows), 
+need run command "make clean-data" to remove data template.
 
  DANH SACH THONG TIN SACH
 
