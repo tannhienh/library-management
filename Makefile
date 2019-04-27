@@ -2,7 +2,7 @@
 
 cc = g++
 
-objects = main.o book.o borrow.o
+objects = main.o book.o borrow.o manage_borrow.o
 
 data_files = ./Data/*
 
@@ -11,6 +11,9 @@ main : $(objects)
 
 main.o : main.cpp
 	$(cc) -c main.cpp
+
+manage_borrow.o : manage_borrow.cpp
+	$(cc) -c manage_borrow.cpp
 
 book.o : book.cpp
 	$(cc) -c book.cpp

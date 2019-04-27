@@ -3,8 +3,11 @@
 
 #include "book.h" // File quan ly sach
 
-#define BORROW_FILE "./Data/Borrows.bin" // File luu danh sach phieu muon
-#define TEMP_BORROW_FILE "./Data/Borrows_temp.bin" // File luu tam
+// File luu danh sach phieu muon
+#define BORROW_FILE "./Data/Borrows.bin"
+
+// File luu tam
+#define TEMP_BORROW_FILE "./Data/Borrows_temp.bin"
 
 #define LENGTH_BORROW_ID 7        // Ma phieu muon sach co 6 ky tu
 #define LENGTH_PERSON_ID 7        // Ma so nguoi muon co 6 ky tu
@@ -16,7 +19,8 @@
 #define LENGTH_DAY_RETURN 11      // Ngay muou co 10 ku tu
 #define LENGTH_BORROWED_STATUS 10 // Trang thai phieu muon (Dang muon/Da tra)
 
-class Borrow {
+class Borrow
+{
 private:
   char borrow_id_[LENGTH_BORROW_ID];              // Ma phieu muon
   char person_id_[LENGTH_PERSON_ID];              // Ma nguoi muon
@@ -117,13 +121,13 @@ public:
   void display_returned(int);
 
   // Xuat danh sach phieu muon
-  void display_borrow_list(vector<Borrow>, string);
+  void display_borrow_list(list<Borrow>, string);
 
   // Ghi thong tin phieu muon vao file BORROW_FILE (Danh sach phieu muon)
-  void write_borrow_info(vector<Borrow>, string);
+  void write_borrow_info(list<Borrow>, string);
 
   // Doc thong tin tu file BORROW_FILE (Danh sach phieu muon)
-  void read_borrow_info(vector<Borrow> &, string);
+  void read_borrow_info(list<Borrow> &, string);
 
   // Hien thi tieu de danh sach phieu dang muon
   void title_borrowing_list();

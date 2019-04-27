@@ -1,7 +1,8 @@
 #include "borrow.h"
 
 // Ham khoi tao khong co tham so
-Borrow::Borrow() {
+Borrow::Borrow()
+{
   strcpy(borrow_id_, "");
   strcpy(person_id_, "");
   strcpy(person_name_, "");
@@ -18,7 +19,8 @@ Borrow::Borrow() {
 Borrow::Borrow(char *Borrow_id, char *person_id, char *person_name,
                char *book_id, char *book_title, char *day_borrowed,
                char *day_returned, char *status_borrowed, char *status_returned,
-               char *borrow_status) {
+               char *borrow_status)
+{
   *borrow_id_ = *Borrow_id;
   *person_id_ = *person_id;
   *person_name_ = *person_name;
@@ -37,7 +39,8 @@ Borrow::~Borrow() {}
 //----------------------------------------------------------------------//
 
 // Gan gia tri cho ma phieu muon
-void Borrow::set_borrow_id(string borrow_id) {
+void Borrow::set_borrow_id(string borrow_id)
+{
   strcpy(borrow_id_, borrow_id.c_str());
 }
 
@@ -45,7 +48,8 @@ void Borrow::set_borrow_id(string borrow_id) {
 string Borrow::get_borrow_id() { return borrow_id_; }
 
 // Gan gia tri cho ma nguoi muon
-void Borrow::set_person_id(string person_id) {
+void Borrow::set_person_id(string person_id)
+{
   strcpy(person_id_, person_id.c_str());
 }
 
@@ -53,7 +57,8 @@ void Borrow::set_person_id(string person_id) {
 string Borrow::get_person_id() { return person_id_; }
 
 // Gan gia tri cho ten nguoi muon
-void Borrow::set_person_name(string person_name) {
+void Borrow::set_person_name(string person_name)
+{
   strcpy(person_name_, person_name.c_str());
 }
 
@@ -67,7 +72,8 @@ void Borrow::set_book_id(string book_id) { strcpy(book_id_, book_id.c_str()); }
 string Borrow::get_book_id() { return book_id_; }
 
 // Gan gia tri cho ten sach
-void Borrow::set_book_title(string book_title) {
+void Borrow::set_book_title(string book_title)
+{
   strcpy(book_title_, book_title.c_str());
 }
 
@@ -75,7 +81,8 @@ void Borrow::set_book_title(string book_title) {
 string Borrow::get_book_title() { return book_title_; }
 
 // Gan gia tri cho ngay muon
-void Borrow::set_day_borrowed(string day_borrowed) {
+void Borrow::set_day_borrowed(string day_borrowed)
+{
   strcpy(day_borrowed_, day_borrowed.c_str());
 }
 
@@ -83,7 +90,8 @@ void Borrow::set_day_borrowed(string day_borrowed) {
 string Borrow::get_day_borrowed() { return day_borrowed_; }
 
 // Gan gia tri cho tinh trang sach khi muosn
-void Borrow::set_status_borrowed_book(string status_borrowed_book) {
+void Borrow::set_status_borrowed_book(string status_borrowed_book)
+{
   strcpy(status_borrowed_book_, status_borrowed_book.c_str());
 }
 
@@ -91,7 +99,8 @@ void Borrow::set_status_borrowed_book(string status_borrowed_book) {
 string Borrow::get_status_borrowed_book() { return status_borrowed_book_; }
 
 // Gan gia tri cho ngay tra
-void Borrow::set_day_returned(string day_returned) {
+void Borrow::set_day_returned(string day_returned)
+{
   strcpy(day_returned_, day_returned.c_str());
 }
 
@@ -99,7 +108,8 @@ void Borrow::set_day_returned(string day_returned) {
 string Borrow::get_day_returned() { return day_returned_; }
 
 // Gan gia tri cho tinh trang sach khi tra
-void Borrow::set_status_returned_book(string status_returned_book) {
+void Borrow::set_status_returned_book(string status_returned_book)
+{
   strcpy(status_returned_book_, status_returned_book.c_str());
 }
 
@@ -107,7 +117,8 @@ void Borrow::set_status_returned_book(string status_returned_book) {
 string Borrow::get_status_returned_book() { return status_returned_book_; }
 
 // Gan gia tri cho trang thai phieu muon
-void Borrow::set_borrow_status(string borrow_status) {
+void Borrow::set_borrow_status(string borrow_status)
+{
   strcpy(borrow_status_, borrow_status.c_str());
 }
 
@@ -117,7 +128,8 @@ string Borrow::get_borrow_status() { return borrow_status_; }
 //----------------------------------------------------------------------//
 
 // Nhap thong tin phieu muon sach
-void Borrow::input_an_info() {
+void Borrow::input_an_info()
+{
 
   bool check = true; // Gia tri kiem tra nhap dung/sai
 
@@ -127,15 +139,19 @@ void Borrow::input_an_info() {
   cin.ignore();
 
   // Nhap ma phieu muon
-  do {
-    try {
+  do
+  {
+    try
+    {
       check = true;
       cout << " Ma phieu (6 so): ";
       cin.getline(borrow_id_, LENGTH_BORROW_ID);
       if (strlen(borrow_id_) != LENGTH_BORROW_ID - 1 || cin.fail())
         throw str_error;
-      else {
-        for (int i = 0; i < strlen(borrow_id_); i++) {
+      else
+      {
+        for (int i = 0; i < strlen(borrow_id_); i++)
+        {
           if (!isdigit(borrow_id_[i]))
             throw str_error;
         }
@@ -150,18 +166,23 @@ void Borrow::input_an_info() {
         throw "\n  Loi mo file\n";
 
       // Doc thong tin sach cho den het file (khong doc duoc nua)
-      while (in_file.read(reinterpret_cast<char *>(&borrow), sizeof(borrow))) {
-        if (borrow.get_borrow_id() == borrow_id_) {
+      while (in_file.read(reinterpret_cast<char *>(&borrow), sizeof(borrow)))
+      {
+        if (borrow.get_borrow_id() == borrow_id_)
+        {
           in_file.close();
           throw "\n Ma phieu muon da ton tai!\n\n";
         }
       }
       in_file.close();
       //---------------------------------------------------------------------//
-    } catch (const char *str) {
+    }
+    catch (const char *str)
+    {
       cerr << str;
       check = false;
-      if (cin.fail()) {
+      if (cin.fail())
+      {
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
       }
@@ -169,23 +190,30 @@ void Borrow::input_an_info() {
   } while (!check);
 
   // Nhap ma nguoi muon
-  do {
+  do
+  {
     check = true;
-    try {
+    try
+    {
       cout << " Ma nguoi muon (6 so): ";
       cin.getline(person_id_, LENGTH_PERSON_ID);
       if (strlen(person_id_) != LENGTH_PERSON_ID - 1 || cin.fail())
         throw str_error;
-      else {
-        for (int i = 0; i < strlen(person_id_); i++) {
+      else
+      {
+        for (int i = 0; i < strlen(person_id_); i++)
+        {
           if (!isdigit(person_id_[i]))
             throw str_error;
         }
       }
-    } catch (const char *str) {
+    }
+    catch (const char *str)
+    {
       cerr << str;
       check = false;
-      if (cin.fail()) {
+      if (cin.fail())
+      {
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
       }
@@ -193,17 +221,22 @@ void Borrow::input_an_info() {
   } while (!check);
 
   // Nhap Ten nguoi muon
-  do {
+  do
+  {
     check = true;
     cout << " Ten nguoi muon: ";
     cin.getline(person_name_, LENGTH_PERSON_NAME);
-    try {
+    try
+    {
       if (cin.fail() || !Book::check_string(this->get_person_name()))
         throw str_error;
-    } catch (const char *str) {
+    }
+    catch (const char *str)
+    {
       cerr << str;
       check = false;
-      if (cin.fail()) {
+      if (cin.fail())
+      {
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
       }
@@ -211,16 +244,20 @@ void Borrow::input_an_info() {
   } while (!check);
 
   // Nhap Ma sach
-  do {
+  do
+  {
     check = true;
-    try {
+    try
+    {
       check = true;
       cout << " Ma sach (6 so): ";
       cin.getline(book_id_, LENGTH_BOOK_ID);
       if (strlen(book_id_) != LENGTH_BOOK_ID - 1 || cin.fail())
         throw str_error;
-      else {
-        for (int i = 0; i < strlen(book_id_); i++) {
+      else
+      {
+        for (int i = 0; i < strlen(book_id_); i++)
+        {
           if (!isdigit(book_id_[i]))
             throw str_error;
         }
@@ -236,8 +273,10 @@ void Borrow::input_an_info() {
 
       check = false;
       // Doc thong tin sach cho den het file (khong doc duoc nua)
-      while (in_file.read(reinterpret_cast<char *>(&book), sizeof(book))) {
-        if (book.get_book_id() == book_id_) {
+      while (in_file.read(reinterpret_cast<char *>(&book), sizeof(book)))
+      {
+        if (book.get_book_id() == book_id_)
+        {
           check = true;
           in_file.close();
           break;
@@ -249,10 +288,13 @@ void Borrow::input_an_info() {
 
       in_file.close();
       //---------------------------------------------------------------//
-    } catch (const char *str) {
+    }
+    catch (const char *str)
+    {
       cerr << str;
       check = false;
-      if (cin.fail()) {
+      if (cin.fail())
+      {
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
       }
@@ -260,17 +302,22 @@ void Borrow::input_an_info() {
   } while (!check);
 
   // Nhap ngay muon sach dang dd/mm/yyyy
-  do {
+  do
+  {
     check = true;
     cout << " Ngay muon (dd/mm/yyyy): ";
     cin.getline(day_borrowed_, LENGTH_DAY_BORROWED);
-    try {
+    try
+    {
       if (strlen(day_borrowed_) != LENGTH_DAY_BORROWED - 1 || cin.fail())
         throw str_error;
-    } catch (const char *str) {
+    }
+    catch (const char *str)
+    {
       cerr << str;
       check = false;
-      if (cin.fail()) {
+      if (cin.fail())
+      {
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
       }
@@ -284,17 +331,22 @@ void Borrow::input_an_info() {
   cout << " 3: Cu\n";
 
   // Nhap tinh trang sach khi muon
-  do {
+  do
+  {
     check = true;
     cout << " Tinh trang sach: ";
     cin >> choice;
-    try {
+    try
+    {
       if (choice < 0 || choice > 3 || cin.fail())
         throw str_error;
-    } catch (const char *str) {
+    }
+    catch (const char *str)
+    {
       cerr << str;
       check = false;
-      if (cin.fail()) {
+      if (cin.fail())
+      {
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
       }
@@ -314,22 +366,30 @@ void Borrow::input_an_info() {
 
   // Gan tieu de sach vao phieu muon
   ifstream in_file;
-  try {
+  try
+  {
     in_file.open(BOOK_FILE, ios::app | ios::binary);
     if (!in_file)
       throw "\n  Loi mo file!\n";
     Book book;
-    while (in_file.read(reinterpret_cast<char *>(&book), sizeof(book))) {
-      if (book.get_book_id() == this->get_book_id()) {
+    while (in_file.read(reinterpret_cast<char *>(&book), sizeof(book)))
+    {
+      if (book.get_book_id() == this->get_book_id())
+      {
         strcpy(book_title_, book.get_book_title().c_str());
         break;
       }
     }
-  } catch (const char *str_error) {
+  }
+  catch (const char *str_error)
+  {
     cout << str_error << BOOK_FILE << endl;
     return;
-  } catch (...) {
-    cerr << "\n  Loi doc file!\n" << BOOK_FILE;
+  }
+  catch (...)
+  {
+    cerr << "\n  Loi doc file!\n"
+         << BOOK_FILE;
   }
   in_file.close();
 
@@ -337,7 +397,8 @@ void Borrow::input_an_info() {
   strcpy(borrow_status_, "Dang muon");
 }
 // Nhap thong tin phieu tra sach
-void Borrow::input_return() {
+void Borrow::input_return()
+{
 
   bool check = true; // Gia tri kiem tra nhap dung/sai
 
@@ -347,15 +408,19 @@ void Borrow::input_return() {
   cin.ignore();
 
   // Nhap ma phieu muon
-  do {
+  do
+  {
     check = true;
-    try {
+    try
+    {
       cout << " Ma phieu (6 so): ";
       cin.getline(borrow_id_, LENGTH_BORROW_ID);
       if (strlen(borrow_id_) != LENGTH_BORROW_ID - 1 || cin.fail())
         throw str_error;
-      else {
-        for (int i = 0; i < strlen(borrow_id_); i++) {
+      else
+      {
+        for (int i = 0; i < strlen(borrow_id_); i++)
+        {
           if (!isdigit(borrow_id_[i]))
             throw str_error;
         }
@@ -370,8 +435,10 @@ void Borrow::input_return() {
 
       check = false;
       // Doc thong tin sach cho den het file (khong doc duoc nua)
-      while (in_file.read(reinterpret_cast<char *>(&borrow), sizeof(borrow))) {
-        if (borrow.get_borrow_id() == this->borrow_id_) {
+      while (in_file.read(reinterpret_cast<char *>(&borrow), sizeof(borrow)))
+      {
+        if (borrow.get_borrow_id() == this->borrow_id_)
+        {
           check = true;
           break;
         }
@@ -382,10 +449,13 @@ void Borrow::input_return() {
 
       in_file.close();
       //--------------------------------------------------------------------//
-    } catch (const char *str) {
+    }
+    catch (const char *str)
+    {
       cerr << str;
       check = false;
-      if (cin.fail()) {
+      if (cin.fail())
+      {
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
       }
@@ -393,11 +463,13 @@ void Borrow::input_return() {
   } while (!check);
 
   // Nhap ngay tra sach
-  do {
+  do
+  {
     check = true;
     cout << " Nhap ngay tra: ";
     cin.getline(day_returned_, LENGTH_DAY_RETURN);
-    try {
+    try
+    {
       if (strlen(day_returned_) != LENGTH_DAY_RETURN - 1 || cin.fail())
         throw str_error;
       //---------------Kiem tra ngay tra nhap truoc ngay muon-----------------//
@@ -407,18 +479,23 @@ void Borrow::input_return() {
       if (!in_file)
         throw "\n Loi mo file!\n";
       Borrow borrow;
-      while (in_file.read(reinterpret_cast<char *>(&borrow), sizeof(borrow))) {
-        if (borrow.get_borrow_id() == this->get_borrow_id()) {
+      while (in_file.read(reinterpret_cast<char *>(&borrow), sizeof(borrow)))
+      {
+        if (borrow.get_borrow_id() == this->get_borrow_id())
+        {
           if (this->get_day_returned() < borrow.get_day_borrowed())
             throw "\n Ngay tra khong the truoc ngay muon!\n\n";
           break;
         }
       }
       //--------------------------------------------------------------------//
-    } catch (const char *str) {
+    }
+    catch (const char *str)
+    {
       cerr << str;
       check = false;
-      if (cin.fail()) {
+      if (cin.fail())
+      {
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
       }
@@ -432,17 +509,22 @@ void Borrow::input_return() {
   cout << " 3: Cu\n";
 
   // Nhap tinh trang sach khi tra
-  do {
+  do
+  {
     check = true;
     cout << " Tinh trang sach: ";
     cin >> choice;
-    try {
+    try
+    {
       if (choice < 0 || choice > 3 || cin.fail())
         throw str_error;
-    } catch (const char *str) {
+    }
+    catch (const char *str)
+    {
       cerr << str;
       check = false;
-      if (cin.fail()) {
+      if (cin.fail())
+      {
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
       }
@@ -465,7 +547,8 @@ void Borrow::input_return() {
 }
 
 // Xuat thong tin phieu muon
-void Borrow::display_borrowing(int i) {
+void Borrow::display_borrowing(int i)
+{
   cout << " ";
   cout << " " << setw(5) << left << i;
   cout << " " << setw(10) << left << borrow_id_;
@@ -480,7 +563,8 @@ void Borrow::display_borrowing(int i) {
 }
 
 // Xuat thongn tin phieu muon da tra
-void Borrow::display_returned(int i) {
+void Borrow::display_returned(int i)
+{
   cout << " ";
   cout << " " << setw(5) << left << i;
   cout << " " << setw(10) << left << borrow_id_;
@@ -497,11 +581,13 @@ void Borrow::display_returned(int i) {
 }
 
 // Xuat danh sach phieu muon theo trang thai
-void Borrow::display_borrow_list(vector<Borrow> borrows, string status) {
-  vector<Borrow>::iterator it;
+void Borrow::display_borrow_list(list<Borrow> borrows, string status)
+{
+  list<Borrow>::iterator it;
   int i = 0;
-  for (it = borrows.begin(); it < borrows.end(); it++)
-    if (it->get_borrow_status() == status) {
+  for (it = borrows.begin(); it != borrows.end(); it++)
+    if (it->get_borrow_status() == status)
+    {
       i++;
       if (status == "Dang muon")
         // Hien thi thong tin phieu muon neu status la Dang muon
@@ -513,43 +599,55 @@ void Borrow::display_borrow_list(vector<Borrow> borrows, string status) {
 }
 
 // Ghi thong tin phieu muon vao file BORROW_FILE (Danh sach phieu muon)
-void Borrow::write_borrow_info(vector<Borrow> write_borrows, string file_name) {
+void Borrow::write_borrow_info(list<Borrow> write_borrows, string file_name)
+{
   ofstream out_file;
-  try {
+  try
+  {
     out_file.open(file_name, ios::app | ios::binary);
     if (!out_file)
       throw "\n  Loi mo file ";
     // Luu thong tin da nhap vao file
     out_file.write(reinterpret_cast<char *>(&write_borrows.back()),
                    sizeof(write_borrows.back()));
-  } catch (const char *str_error) {
+  }
+  catch (const char *str_error)
+  {
     cout << str_error << file_name << endl;
     return;
-  } catch (...) {
+  }
+  catch (...)
+  {
     cerr << "\n  Loi ghi file " << file_name;
   }
   out_file.close();
 }
 
 // Doc thong tin tu file BORROW_FILE (Danh sach phieu muon)
-void Borrow::read_borrow_info(vector<Borrow> &borrows, string file_name) {
+void Borrow::read_borrow_info(list<Borrow> &borrows, string file_name)
+{
   ifstream in_file;
-  try {
+  try
+  {
     in_file.open(file_name, ios::binary);
     if (!in_file)
       throw "\n  Loi mo file ";
     Borrow borrow;
-    while (in_file.read(reinterpret_cast<char *>(&borrow), sizeof(borrow))) {
+    while (in_file.read(reinterpret_cast<char *>(&borrow), sizeof(borrow)))
+    {
       // Luu thong tin phieu muon vua doc duoc tu file vao container borrows
       borrows.push_back(borrow);
     }
-  } catch (const std::exception &e) {
+  }
+  catch (const std::exception &e)
+  {
     std::cerr << " " << e.what() << '\n';
   }
 }
 
 // Hien thi tieu de danh sach phieu dang muon
-void Borrow::title_borrowing_list() {
+void Borrow::title_borrowing_list()
+{
   cout << " ";
   cout << setw(6) << left << "| STT ";
   cout << setw(11) << left << "| Ma phieu ";
@@ -564,7 +662,8 @@ void Borrow::title_borrowing_list() {
 }
 
 // Hien thi tieu de danh sach phieu dang muon
-void Borrow::title_returned_list() {
+void Borrow::title_returned_list()
+{
   cout << " ";
   cout << setw(6) << left << "| STT ";
   cout << setw(11) << left << "| Ma phieu ";

@@ -44,7 +44,10 @@
 ===============================================================================
 
 =====MENU CHINH================================================================
- ========Chuong Trinh Quan Ly Thu Vien========
+
+ CHUONG TRINH QUAN LY THU VIEN
+
+ ============================================
 
  Moi ban chon
 
@@ -58,11 +61,13 @@
 
  5. Danh sach phieu muon sach.
 
+ 6. Tim kiem.
+
  0. Thoat.
 
  ============================================
 
- Nhap lua chon cua ban:
+ Nhap lua chon cua ban: 
 
 =====1 - PHAN NHAP THONG TIN SACH==============================================
 
@@ -84,12 +89,14 @@
 
  1. Sap xep theo tieu de sach
  2. Sap xep theo nam xuat ban
- 3. Sap xep theo sach moi nhat
+ 3. Sap xep theo nha xuat ban
+ 4. Sap xep theo tac gia
+ 5. Sap xep theo sach moi nhat
  0. Tro ve
 
- Nhap lua chon cua ban:
+ Nhap lua chon cua ban: 
 
-=====2.3 - HIEN THI DANH SACH SACH=============================================
+=====2.5 - HIEN THI DANH SACH SACH=============================================
 
  DANH SACH THONG TIN SACH
 
@@ -142,16 +149,37 @@
 
 =====5 - MENU DANH SACH PHIEU MUON=============================================
 
- Lua chon loai danh sach
+ DANH SACH PHIEU MUON
 
  1. Danh sach phieu dang muon
  2. Danh sach phieu muon da tra
  3. Tat ca danh sach
  0. Tro ve
 
+ Nhap lua chon cua ban: 
+ 
+=====5.1 - MENU DANH SAP XEP PHIEU MUON==================================================
+
+ DANH SACH PHIEU DANG MUON
+
+ 1. Sap xep theo ngay muon
+ 2. Sap xep theo ten nguoi muon
+ 0. Tro ve menu chinh
+
  Nhap lua chon cua ban:
 
-======5.1 5.2 5.3 - HIEN THI DANH SACH PHIEU MUON==============================
+=====5.2 - MENU DANH SAP XEP PHIEU MUON==================================================
+
+ DANH SACH PHIEU DA TRA
+
+ 1. Sap xep theo ngay muon
+ 2. Sap xep theo ten nguoi muon
+ 3. Sap xep theo ngay tra
+ 0. Tro ve menu chinh
+
+ Nhap lua chon cua ban:
+
+======5.3 - HIEN THI DANH SACH PHIEU MUON==============================
 
  DANH SACH PHIEU DANG MUON
 

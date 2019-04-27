@@ -4,14 +4,15 @@
 // Using strcpy replace for strcpy_s on MSVS compiler
 #define _CRT_SECURE_CPP_OVERLOAD_STANDARD_NAMES 1
 
+#include <iostream>
 #include <exception>
 #include <fstream>
-#include <iomanip> // setfill, setw
-#include <iostream>
+#include <iomanip>  // setfill, setw
 #include <limits>   // numeric_litmits
 #include <string.h> // strcpy
 #include <string>
-#include <vector>
+#include <list>
+#include <algorithm> // sort, reverse
 
 using namespace std;
 
@@ -95,7 +96,7 @@ public:
   virtual void input_an_info();
 
   // Hien thi danh sach sach
-  void display_book_list(vector<Book>);
+  void display_book_list(list<Book>);
 
   // Xuat thong tin mot sach
   void display_book_info(int);

@@ -1,7 +1,8 @@
 #include "book.h"
 
 // Ham khoi tao khong tham so
-Book::Book() {
+Book::Book()
+{
   strcpy(book_id_, "");
   strcpy(book_title_, "");
   strcpy(publisher_, "");
@@ -13,7 +14,8 @@ Book::Book() {
 
 // Ham khoi tao co tham so
 Book::Book(char *book_id, char *book_title, unsigned short year,
-           char *publisher, char *author, char *type, int amount) {
+           char *publisher, char *author, char *type, int amount)
+{
   *book_id_ = *book_id;
   *book_title_ = *book_title;
   year_ = year;
@@ -35,7 +37,8 @@ void Book::set_book_id(string book_id) { strcpy(book_id_, book_id.c_str()); }
 string Book::get_book_id() { return book_id_; }
 
 // Gan gia tri cho ten sach
-void Book::set_book_title(string book_title) {
+void Book::set_book_title(string book_title)
+{
   strcpy(book_title_, book_title.c_str());
 }
 
@@ -49,7 +52,8 @@ void Book::set_year(unsigned short year) { year_ = year; }
 unsigned short Book::get_year() { return year_; }
 
 // Gan gia tri cho nha xuat ban
-void Book::set_publisher(string publisher) {
+void Book::set_publisher(string publisher)
+{
   strcpy(publisher_, publisher.c_str());
 }
 
@@ -77,7 +81,8 @@ int Book::get_amount() { return amount_; }
 //------------------------------------------------------------------//
 
 // Nhap thong tin sach
-void Book::input_an_info() {
+void Book::input_an_info()
+{
 
   bool check = true; // Gia tri kiem tra nhap dung/sai
 
@@ -87,15 +92,19 @@ void Book::input_an_info() {
   cin.ignore();
 
   // Nhap Ma sach
-  do {
+  do
+  {
     check = true;
-    try {
+    try
+    {
       cout << " Ma sach (6 so): ";
       cin.getline(book_id_, LENGTH_BOOK_ID);
       if (strlen(book_id_) != LENGTH_BOOK_ID - 1 || cin.fail())
         throw str_error;
-      else {
-        for (int i = 0; i < strlen(book_id_); i++) {
+      else
+      {
+        for (unsigned int i = 0; i < strlen(book_id_); i++)
+        {
           if (!isdigit(book_id_[i]))
             throw str_error;
         }
@@ -109,18 +118,23 @@ void Book::input_an_info() {
         throw "\n  Loi mo file\n";
 
       // Doc thong tin sach cho den het file (khong doc duoc nua)
-      while (in_file.read(reinterpret_cast<char *>(&book), sizeof(book))) {
-        if (book.get_book_id() == book_id_) {
+      while (in_file.read(reinterpret_cast<char *>(&book), sizeof(book)))
+      {
+        if (book.get_book_id() == book_id_)
+        {
           in_file.close();
           throw "\n Ma sach da ton tai!\n\n";
         }
       }
       in_file.close();
       //---------------------------------------------------------------//
-    } catch (const char *str) {
+    }
+    catch (const char *str)
+    {
       cerr << str;
       check = false;
-      if (cin.fail()) {
+      if (cin.fail())
+      {
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
       }
@@ -128,17 +142,22 @@ void Book::input_an_info() {
   } while (!check);
 
   // Nhap Ten sach
-  do {
+  do
+  {
     check = true;
     cout << " Ten sach: ";
     cin.getline(book_title_, LENGTH_BOOK_TITLE);
-    try {
+    try
+    {
       if (cin.fail())
         throw str_error;
-    } catch (const char *str) {
+    }
+    catch (const char *str)
+    {
       cerr << str;
       check = false;
-      if (cin.fail()) {
+      if (cin.fail())
+      {
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
       }
@@ -146,17 +165,22 @@ void Book::input_an_info() {
   } while (!check);
 
   // Nhap nam xuat ban
-  do {
+  do
+  {
     check = true;
     cout << " Nam xuat ban: ";
     cin >> year_;
-    try {
+    try
+    {
       if (year_ <= 1900 || cin.fail())
         throw str_error;
-    } catch (const char *str) {
+    }
+    catch (const char *str)
+    {
       cerr << str;
       check = false;
-      if (cin.fail()) {
+      if (cin.fail())
+      {
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
       }
@@ -166,14 +190,18 @@ void Book::input_an_info() {
   cin.ignore();
 
   // Nhap nha xuat ban
-  do {
+  do
+  {
     check = true;
     cout << " Nha xuat ban: ";
     cin.getline(publisher_, LENGTH_PUBLISHER);
-    try {
+    try
+    {
       if (cin.fail())
         throw str_error;
-    } catch (const char *str) {
+    }
+    catch (const char *str)
+    {
       cerr << str;
       check = false;
       cin.clear();
@@ -182,17 +210,22 @@ void Book::input_an_info() {
   } while (!check);
 
   // Nhap ten tac gia
-  do {
+  do
+  {
     check = true;
     cout << " Ten tac gia: ";
     cin.getline(author_, LENGTH_AUTHOR);
-    try {
+    try
+    {
       if (cin.fail() || !check_string(this->get_author()))
         throw str_error;
-    } catch (const char *str) {
+    }
+    catch (const char *str)
+    {
       cerr << str;
       check = false;
-      if (cin.fail()) {
+      if (cin.fail())
+      {
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
       }
@@ -200,17 +233,22 @@ void Book::input_an_info() {
   } while (!check);
 
   // Nhap the loai sach
-  do {
+  do
+  {
     check = true;
     cout << " The loai sach: ";
     cin.getline(type_, LENGTH_TYPE);
-    try {
+    try
+    {
       if (cin.fail() || !check_string(this->get_type()))
         throw str_error;
-    } catch (const char *str) {
+    }
+    catch (const char *str)
+    {
       cerr << str;
       check = false;
-      if (cin.fail()) {
+      if (cin.fail())
+      {
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
       }
@@ -218,17 +256,22 @@ void Book::input_an_info() {
   } while (!check);
 
   // Nhap so luong sach
-  do {
+  do
+  {
     check = true;
     cout << " So luong: ";
     cin >> amount_;
-    try {
+    try
+    {
       if (year_ < 0 || cin.fail())
         throw str_error;
-    } catch (const char *str) {
+    }
+    catch (const char *str)
+    {
       cerr << str;
       check = false;
-      if (cin.fail()) {
+      if (cin.fail())
+      {
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
       }
@@ -237,7 +280,8 @@ void Book::input_an_info() {
 }
 
 // Hien thi thong tin sach
-void Book::display_book_info(int i) {
+void Book::display_book_info(int i)
+{
   cout << " ";
   cout << " " << setw(5) << left << i;
   cout << " " << setw(9) << left << book_id_;
@@ -251,10 +295,12 @@ void Book::display_book_info(int i) {
 }
 
 // Hien thi danh sach sach
-void Book::display_book_list(vector<Book> books) {
-  vector<Book>::iterator it;
+void Book::display_book_list(list<Book> books)
+{
+  list<Book>::iterator it;
   int i = 0;
-  for (it = books.begin(); it != books.end(); it++) {
+  for (it = books.begin(); it != books.end(); it++)
+  {
     i++;
     // Hien thi thong tin sach
     it->display_book_info(i);
@@ -262,7 +308,8 @@ void Book::display_book_list(vector<Book> books) {
 }
 
 // Hien thi tieu de cot danh sach sach
-void Book::title_books_list() {
+void Book::title_books_list()
+{
   cout << " ";
   cout << setw(6) << left << "| STT ";
   cout << setw(10) << left << "| Ma sach ";
@@ -278,11 +325,14 @@ void Book::title_books_list() {
 // Kiem tra chuoi co chua ky tu khong phai chu (so hoac ky tu dac biet)
 // Tra ve True khi chuoi chi co ky tu chu
 // Tra ve false khi chuoi co ky tu khac ky tu chu
-bool Book::check_string(string str) {
+bool Book::check_string(string str)
+{
   bool check = true;
-  for (int i = 0; i < str.length(); i++) {
+  for (unsigned int i = 0; i < str.length(); i++)
+  {
     if (str[i] < 32 || (str[i] > 32 && str[i] < 65) ||
-        (str[i] > 90 && str[i] < 97) || str[i] > 122) {
+        (str[i] > 90 && str[i] < 97) || str[i] > 122)
+    {
       check = false;
       cin.clear();
       break;
