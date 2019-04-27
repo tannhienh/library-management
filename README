@@ -27,7 +27,8 @@
 4. Books.bin file has data template as below:
 
 Note:
-Data template was created by compiler GNU c++.
+Data template was created depend on compiler GNU c++.
+Data template will not display correctly when build with MSVS compiler on Windows.
 So, If want build with MSVS (on Windows), 
 need run command "make clean-data" to remove data template.
 
