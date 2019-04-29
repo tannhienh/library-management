@@ -9,6 +9,11 @@
 
 - Build:    
 ~$ make
+or
+~$ make build
+
+- Build Debug:
+~$ make debug
 
 - Run:
 ~$ ./main
