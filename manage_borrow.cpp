@@ -267,22 +267,23 @@ void main_menu()
         {
         case 1:
           // Sap xep danh sach sach trong books_read theo tieu de sach
-          books_read.sort(compare_title);
+          bubble_sort(books_read);
           break;
 
         case 2:
           // Sap xep danh sach sach trong books_read theo nam xuat ban
-          books_read.sort(compare_year);
+          selection_sort(books_read);
           break;
 
         case 3:
           // Sap xep danh sach sach trong books_read theo nha xuat ban
-          books_read.sort(compare_publisher);
+          insertion_sort<list<Book>, list<Book>::iterator>(books_read);
           break;
 
         case 4:
           // Sap xep danh sach sach trong books_read theo ten tac gia
-          books_read.sort(compare_author);
+          merge_sort<list<Book>, list<Book>::iterator>(books_read, \
+          books_read.begin(), --books_read.end());
           break;
 
         case 5:
@@ -496,7 +497,6 @@ void search_book()
   {
   case 1:
   {
-    
   }
   break;
 
@@ -833,6 +833,158 @@ void read_list_from_file(container &contain, string file_name)
     cerr << "  Loi doc file " << file_name;
   }
   in_file.close();
+}
+
+// Hoan doi
+template <typename T, typename OBJ>
+void my_swap(T a, T b)
+{
+  OBJ temp = *a;
+  *a = *b;
+  *b = temp;
+}
+
+// Sap xep noi bot - Bubble sort
+// Sap xep danh sach sach theo ten sach
+void bubble_sort(list<Book> &books)
+{
+  list<Book>::iterator it_i, it_j;
+  list<Book>::iterator last = books.end();
+  --last;
+  for (int i = 1; i < books.size(); i++)
+  {
+    --last;
+    for (it_i = books.begin(); it_i != last; it_i++)
+    {
+      it_j = it_i;
+      ++it_j;
+      if (it_i->get_book_title() > it_j->get_book_title())
+        my_swap<list<Book>::iterator, Book>(it_i, it_j);
+    }
+  }
+}
+
+// Sap xep chon - Selection sort
+// Sap xep danh sach sach theo nam xuat ban
+void selection_sort(list<Book> &books)
+{
+  bool check;
+  list<Book>::iterator min;
+  list<Book>::iterator it_i, it_j;
+  for (it_i = books.begin(); it_i != books.end(); it_i++)
+  {
+    check = false;
+    min = it_i;
+    it_j = min;
+    for (++it_j; it_j != books.end(); it_j++)
+    {
+      if (it_j->get_year() < min->get_year())
+      {
+        min = it_j;
+        check = true;
+      }
+    }
+    if (check)
+      my_swap<list<Book>::iterator, Book>(it_i, min);
+  }
+}
+
+// Sap xep chen - Insertion sort
+// Sap xep danh sach sach theo nha xuat ban
+template <typename container, typename iter>
+void insertion_sort(container &contains)
+{
+  iter it_i = contains.begin();
+  iter it_j, it_k;
+  for (++it_i; it_i != contains.end(); it_i++)
+  {
+    it_j = it_i;
+    it_k = it_j;
+    --it_k;
+
+    while (it_j != contains.begin() && it_k->get_publisher() > \
+    it_j->get_publisher())
+    {
+      my_swap<iter, Book>(it_k, it_j);
+      --it_j;
+      if (it_j != contains.begin())
+      {
+        it_k = it_j;
+        --it_k;
+      }
+    }
+  }
+}
+
+// Tron 2 phan thanh mot container duoc sap xep
+template <typename T, typename It>
+void merge(T &a, It from, It to, It mid)
+{
+  It i = from;
+  It j = ++mid;
+  T temps;
+  ++to;
+
+  // Tron 2 phan vao container temps
+  while (i != mid && j != to)
+  {
+    if (i->get_author() < j->get_author())
+    {
+      temps.push_back(*i);
+      i++;
+    }
+    else
+    {
+      temps.push_back(*j);
+      j++;
+    }
+  }
+
+  // Chen tat ca cac gia tri con lai tu i toi mid vao container temps
+  while (i != mid)
+  {
+    temps.push_back(*i);
+    i++;
+  }
+
+  // Chen tat ca cac gia tri con lai tu j toi cuoi vao container temps
+  while (j != to)
+  {
+    temps.push_back(*j);
+    j++;
+  }
+
+  // Gan du lieu da duoc sap xep tu temps vao container a
+  It it_temps;
+  for (it_temps = temps.begin(); it_temps != temps.end(); it_temps++)
+  {
+    *from = *it_temps;
+    from++;
+  }
+}
+
+// Sap xep tron - Merge sort
+// Sap xep danh sach sach theo tac gia
+template <typename T, typename It>
+void merge_sort(T &a, It from, It to)
+{
+  It mid;
+  if (from != to)
+  {
+    int count;
+    mid = from;
+    It jump = from;
+    for (count = 1; jump != to; jump++)
+      ++count;
+
+    for (int i = 1; i < count / 2; i++)
+      ++mid;
+
+    merge_sort(a, from, mid);
+    merge_sort(a, ++mid, to);
+
+    merge<T, It>(a, from, to, --mid);
+  }
 }
 
 // Xoa man hinh
