@@ -98,4 +98,31 @@ void write_list_to_file(container, string);
 template <typename container, typename T>
 void read_list_from_file(container &, string);
 
+// Hoan doi
+template <typename T, typename OBJ>
+void my_swap(T, T);
+
+// Sap xep noi bot - Bubble sort
+// Sap xep danh sach sach theo ten sach
+void bubble_sort(list<Book> &);
+
+// Sap xep chon - Selection sort
+// Sap xep danh sach sach theo nam xuat ban
+void selection_sort(list<Book> &);
+
+// Sap xep chen - Insertion sort
+// Sap xep danh sach sach theo nha xuat ban
+template <typename container, typename iter>
+void insertion_sort(container &);
+
+
+// Tron 2 phan thanh mot container duoc sap xep
+template <typename T, typename It>
+void merge(T &, It, It, It);
+
+// Sap xep tron - Merge sort
+// Sap xep danh sach sach theo tac gia
+template <typename T, typename It>
+void merge_sort(T &, It, It);
+
 #endif // MANAGE_BORROW_H_
