@@ -89,6 +89,9 @@ void Borrow::set_day_borrowed(string day_borrowed)
 // Tra ve ngay muon sach
 string Borrow::get_day_borrowed() { return day_borrowed_; }
 
+// Tra ve ngay muon sach de sap xep danh sach theo ngay muon
+string Borrow::get_year() { return day_borrowed_; }
+
 // Gan gia tri cho tinh trang sach khi muosn
 void Borrow::set_status_borrowed_book(string status_borrowed_book)
 {

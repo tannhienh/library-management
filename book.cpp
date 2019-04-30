@@ -66,6 +66,9 @@ void Book::set_author(string author) { strcpy(author_, author.c_str()); }
 // Tra ve ten tac gia
 string Book::get_author() { return author_; }
 
+// Tra ve ten tac gia de sap xep danh sach theo ten
+string Book::get_person_name() { return author_; }
+
 // Gan gia tri cho loai sach
 void Book::set_type(string type) { strcpy(type_, type.c_str()); }
 

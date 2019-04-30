@@ -78,6 +78,9 @@ public:
   // Tra ve ten tac gia
   string get_author();
 
+  // Tra ve ten tac gia de sap xep danh sach theo ten
+  string get_person_name();
+
   // Gan gia tri cho the loai sach
   void set_type(string);
 

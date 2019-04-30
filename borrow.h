@@ -82,6 +82,9 @@ public:
   // Tra ve ngay muon sach
   string get_day_borrowed();
 
+ // Tra ve ngay muon sach de sap xep danh sach theo ngay muon
+  string get_year();
+
   // Gan gia tri cho ngay tra sach
   void set_day_returned(string);
 
