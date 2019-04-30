@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------//
-// Application console Manage Library
-// Compiler: g++, MSVS
+// Application console Library Management
+// Compiler: GNU C++, MSVS C++
 //---------------------------------------------------------------------------//
 
 #include "manage_borrow.h"
