@@ -266,24 +266,23 @@ void main_menu()
         switch (choice)
         {
         case 1:
-          // Sap xep danh sach sach trong books_read theo tieu de sach
+          // Sap xep danh sach sach trong books_read theo ten sach
           bubble_sort(books_read);
           break;
 
         case 2:
           // Sap xep danh sach sach trong books_read theo nam xuat ban
-          selection_sort(books_read);
+          selection_sort<list<Book>, list<Book>::iterator, Book>(books_read);
           break;
 
         case 3:
           // Sap xep danh sach sach trong books_read theo nha xuat ban
-          insertion_sort<list<Book>, list<Book>::iterator>(books_read);
+          insertion_sort<list<Book>, list<Book>::iterator, Book>(books_read);
           break;
 
         case 4:
           // Sap xep danh sach sach trong books_read theo ten tac gia
-          merge_sort<list<Book>, list<Book>::iterator>(books_read, \
-          books_read.begin(), --books_read.end());
+          merge_sort<list<Book>, list<Book>::iterator>(books_read, books_read.begin(), --books_read.end());
           break;
 
         case 5:
@@ -445,7 +444,7 @@ void display_borrowed_option()
   case 3:
   {
     // Sap xep danh sach phieu muon theo ngay muon tang dan
-    borrows_read.sort(compare_day_borrowed);
+    selection_sort<list<Borrow>, list<Borrow>::iterator, Borrow>(borrows_read);
 
     cout << "\n DANH SACH PHIEU DANG MUON\n\n";
     // Xuat danh sach phieu dang muon da duoc sap xep
@@ -675,17 +674,17 @@ void sort_borrows(list<Borrow> &borrows, string title, int &choice, int status)
   {
   case 1:
     // Sap xep danh sach phieu muon theo ngay muon tang dan
-    borrows.sort(compare_day_borrowed);
+    selection_sort<list<Borrow>, list<Borrow>::iterator, Borrow>(borrows);
     break;
 
   case 2:
     // Sap xep danh sach phieu muon theo ten nguoi muon tang dan
-    borrows.sort(compare_person_name);
+    merge_sort<list<Borrow>, list<Borrow>::iterator>(borrows, borrows.begin(), --borrows.end());
     break;
 
   case 3:
     // Sap xep danh sach phieu muon theo ngay tra tang dan
-    borrows.sort(compare_day_returned);
+    quick_sort<list<Borrow>::iterator, Borrow>(borrows.begin(), --borrows.end(), 0, borrows.size() -1);
     break;
 
   case 0:
@@ -725,7 +724,10 @@ void display_returned_list(list<Borrow> borrows)
 
   cout << " " << setfill('=') << setw(167) << "=" << setfill(' ') << endl;
 }
-
+/*---------------------------------------------------------------------------//
+// Phan chuc nang so sanh de sap xep danh sach
+// Da duoc thay the bang chuc nang sap xep theo nhieu kieu
+//---------------------------------------------------------------------------//
 // So sanh tieu de sach
 bool compare_title(Book first, Book second)
 {
@@ -767,6 +769,7 @@ bool compare_day_returned(Borrow first, Borrow second)
 {
   return (first.get_day_returned() < second.get_day_returned());
 }
+//---------------------------------------------------------------------------*/
 
 // Nhap thong tin sach/phieu muon
 template <typename container, typename T>
@@ -836,10 +839,10 @@ void read_list_from_file(container &contain, string file_name)
 }
 
 // Hoan doi
-template <typename T, typename OBJ>
-void my_swap(T a, T b)
+template <typename It, typename Obj>
+void my_swap(It a, It b)
 {
-  OBJ temp = *a;
+  Obj temp = *a;
   *a = *b;
   *b = temp;
 }
@@ -866,17 +869,19 @@ void bubble_sort(list<Book> &books)
 
 // Sap xep chon - Selection sort
 // Sap xep danh sach sach theo nam xuat ban
-void selection_sort(list<Book> &books)
+// Sap xep danh sach phieu muon theo ngay muon
+template <typename T, typename It, typename Obj>
+void selection_sort(T &contains)
 {
   bool check;
-  list<Book>::iterator min;
-  list<Book>::iterator it_i, it_j;
-  for (it_i = books.begin(); it_i != books.end(); it_i++)
+  It min;
+  It it_i, it_j;
+  for (it_i = contains.begin(); it_i != contains.end(); it_i++)
   {
     check = false;
     min = it_i;
     it_j = min;
-    for (++it_j; it_j != books.end(); it_j++)
+    for (++it_j; it_j != contains.end(); it_j++)
     {
       if (it_j->get_year() < min->get_year())
       {
@@ -885,27 +890,27 @@ void selection_sort(list<Book> &books)
       }
     }
     if (check)
-      my_swap<list<Book>::iterator, Book>(it_i, min);
+      my_swap<It, Obj>(it_i, min);
   }
 }
 
 // Sap xep chen - Insertion sort
 // Sap xep danh sach sach theo nha xuat ban
-template <typename container, typename iter>
-void insertion_sort(container &contains)
+template <typename T, typename It, typename Obj>
+void insertion_sort(T &contains)
 {
-  iter it_i = contains.begin();
-  iter it_j, it_k;
+  It it_i = contains.begin();
+  It it_j, it_k;
   for (++it_i; it_i != contains.end(); it_i++)
   {
     it_j = it_i;
     it_k = it_j;
     --it_k;
 
-    while (it_j != contains.begin() && it_k->get_publisher() > \
-    it_j->get_publisher())
+    while (it_j != contains.begin() && it_k->get_publisher() >
+                                           it_j->get_publisher())
     {
-      my_swap<iter, Book>(it_k, it_j);
+      my_swap<It, Obj>(it_k, it_j);
       --it_j;
       if (it_j != contains.begin())
       {
@@ -928,7 +933,7 @@ void merge(T &a, It from, It to, It mid)
   // Tron 2 phan vao container temps
   while (i != mid && j != to)
   {
-    if (i->get_author() < j->get_author())
+    if (i->get_person_name() < j->get_person_name())
     {
       temps.push_back(*i);
       i++;
@@ -965,6 +970,7 @@ void merge(T &a, It from, It to, It mid)
 
 // Sap xep tron - Merge sort
 // Sap xep danh sach sach theo tac gia
+// Sap xep danh sach phieu muon theo ten nguoi muon
 template <typename T, typename It>
 void merge_sort(T &a, It from, It to)
 {
@@ -985,6 +991,54 @@ void merge_sort(T &a, It from, It to)
 
     merge<T, It>(a, from, to, --mid);
   }
+}
+
+// Sap xep nhanh - Quick sort
+// Sap xep danh sach phieu muon da tra theo ngay tra
+template <typename It, typename Obj>
+void quick_sort(It left, It right, int p_l, int p_r)
+{
+    It l = left;
+    It r = right;
+    int p_left = p_l;
+    int p_right = p_r;
+    
+    // Tinh mid lam pivot
+    int count;
+    It pivot = left;
+    It jump = left;
+    for (count = 1; jump != right; jump++)
+        ++count;
+    for (int i = 1; i < (count / 2); i++)
+        ++pivot;
+
+    while (p_l <= p_r)
+    {
+        while (l->get_day_returned() < pivot->get_day_returned())
+        {
+            l++;
+            p_l++;
+        }
+
+        while (r->get_day_returned() > pivot->get_day_returned())
+        {
+            r--;
+            p_r--;
+        }
+
+        if (p_l <= p_r)
+        {
+            my_swap<It, Obj>(l, r);
+            l++;
+            p_l++;
+            r--;
+            p_r--;
+        }
+    }
+    if (p_left < p_r)
+        quick_sort<It, Obj>(left, r, p_left, p_r);
+    if (p_l < p_right)
+        quick_sort<It, Obj>(l, right, p_l, p_right);
 }
 
 // Xoa man hinh

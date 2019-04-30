@@ -51,6 +51,10 @@ void display_borrowing_list(list<Borrow>);
 // Xuat danh sach phieu da tra
 void display_returned_list(list<Borrow>);
 
+/*---------------------------------------------------------------------------//
+// Phan chuc nang so sanh de sap xep danh sach
+// Da duoc thay the bang chuc nang sap xep theo nhieu kieu
+//---------------------------------------------------------------------------//
 // So sanh tieu de sach
 bool compare_title(Book, Book);
 
@@ -71,6 +75,7 @@ bool compare_person_name(Borrow, Borrow);
 
 // So sanh ngay tra
 bool compare_day_returned(Borrow, Borrow);
+//---------------------------------------------------------------------------*/
 
 // Xoa man hinh
 void clear_screen();
@@ -99,8 +104,8 @@ template <typename container, typename T>
 void read_list_from_file(container &, string);
 
 // Hoan doi
-template <typename T, typename OBJ>
-void my_swap(T, T);
+template <typename It, typename Obj>
+void my_swap(It, It);
 
 // Sap xep noi bot - Bubble sort
 // Sap xep danh sach sach theo ten sach
@@ -108,13 +113,14 @@ void bubble_sort(list<Book> &);
 
 // Sap xep chon - Selection sort
 // Sap xep danh sach sach theo nam xuat ban
-void selection_sort(list<Book> &);
+// Sap xep danh sach phieu muon theo ngay muon
+template <typename T, typename It, typename Obj>
+void selection_sort(T &);
 
 // Sap xep chen - Insertion sort
 // Sap xep danh sach sach theo nha xuat ban
-template <typename container, typename iter>
-void insertion_sort(container &);
-
+template <typename T, typename It, typename Obj>
+void insertion_sort(T &);
 
 // Tron 2 phan thanh mot container duoc sap xep
 template <typename T, typename It>
@@ -122,7 +128,13 @@ void merge(T &, It, It, It);
 
 // Sap xep tron - Merge sort
 // Sap xep danh sach sach theo tac gia
+// Sap xep danh sach phieu muon theo ten nguoi muon
 template <typename T, typename It>
 void merge_sort(T &, It, It);
+
+// Sap xep nhanh - Quick sort
+// Sap xep danh sach phieu muon da tra theo ngay tra
+template <typename It, typename Obj>
+void quick_sort(It, It, int, int);
 
 #endif // MANAGE_BORROW_H_
