@@ -1,4 +1,4 @@
-# Manage Library
+# Library Management
 
 cc = g++
 
@@ -9,8 +9,8 @@ data_files = ./Data/*
 build : $(objects)
 	$(cc) -o main $(objects)
 
-debug : $(objects)
-	$(cc) -g -o main $(objects)
+debug : 
+	$(cc) -g -o main *.cpp
 
 main.o : main.cpp
 	$(cc) -c main.cpp
