@@ -1,28 +1,26 @@
 //---------------------------------------------------------------------------//
-// Application console Manage Library
+// Application console Library Management
 // Compiler: GNU C++, MSVS C++
 //---------------------------------------------------------------------------//
 
-# Manage Library
-
-# Use Commands
+USAGE
 
 - Build:    
-~$ make
+    $ make
 or
-~$ make build
+    $ make build
 
 - Build Debug:
-~$ make debug
+    $ make debug
 
 - Run:
-~$ ./main
+    $ ./main
 
-- Remove files objects *.0 and excute file:
-~# make clean
+- Remove files object *.0 and execute file:
+    $ make clean
 
 - Remove data file:
-~# make clean-data
+    $ make clean-data
 
 ===============================================================================
 
@@ -42,17 +40,17 @@ need run command "make clean-data" to remove data template.
  ===============================================================================================================================
  | STT | Ma sach | Ten sach                     | Nam XB | Nha xuat ban           | Tac gia                | The loai     | SL |
  -------------------------------------------------------------------------------------------------------------------------------
-  1     123406    Tu duy nhanh va cham           2017     The gioi                 Daniel Kahneman          Kinh te        7    
-  2     123405    Lap trinh C++                  2016     Minh Khai                Nhieu tac gia            Lap trinh      15   
-  3     123404    Luoc su loai nguoi             2017     Tri thuc                 Harari                   Lich su        20   
-  4     123403    Ky thuat lap trinh C           2018     Bach khoa Ha Noi         Nhieu tac gia            Lap trinh      15   
-  5     123402    Nha gia kim                    2013     Van hoc                  Paulo Coelho             Van hoc        19   
-  6     123401    Lap trinh C                    2010     Minh Khai                Pham Van Uat             Lap trinh      10   
+  1     123006    Tu duy nhanh va cham           2017     The gioi                 Daniel Kahneman          Kinh te        10   
+  2     123005    Lap trinh C++                  2014     Minh Khai                Bjarne Stroustrup        Lap trinh      15   
+  3     123004    Luoc su loai nguoi             2017     Tri thuc                 Harari                   Lich su        20   
+  4     123003    Ky thuat lap trinh C           2018     Bach khoa Ha Noi         Nhieu tac gia            Lap trinh      15   
+  5     123002    Nha gia kim                    2013     Van hoc                  Paulo Coelho             Van hoc        20   
+  6     123001    Lap trinh C                    2010     Minh Khai                Dennis Ritchie           Lap trinh      10   
  ===============================================================================================================================
 
-===============================================================================
-    Tong quan giao dien nhap xuat
-===============================================================================
+//---------------------------------------------------------------------------//
+// Tong quan giao dien nhap xuat
+//---------------------------------------------------------------------------//
 
 =====MENU CHINH================================================================
 
@@ -114,14 +112,14 @@ need run command "make clean-data" to remove data template.
  ===============================================================================================================================
  | STT | Ma sach | Ten sach                     | Nam XB | Nha xuat ban           | Tac gia                | The loai     | SL |
  -------------------------------------------------------------------------------------------------------------------------------
-  1     123406    Tu duy nhanh va cham           2017     The gioi                 Daniel Kahneman          Kinh te        7    
-  2     123405    Lap trinh C++                  2016     Minh Khai                Nhieu tac gia            Lap trinh      15   
-  3     123404    Luoc su loai nguoi             2017     Tri thuc                 Harari                   Lich su        20   
-  4     123403    Ky thuat lap trinh C           2018     Bach khoa Ha Noi         Nhieu tac gia            Lap trinh      15   
-  5     123402    Nha gia kim                    2013     Van hoc                  Paulo Coelho             Van hoc        19   
-  6     123401    Lap trinh C                    2010     Minh Khai                Pham Van Uat             Lap trinh      10   
+  1     123006    Tu duy nhanh va cham           2017     The gioi                 Daniel Kahneman          Kinh te        10   
+  2     123005    Lap trinh C++                  2014     Minh Khai                Bjarne Stroustrup        Lap trinh      15   
+  3     123004    Luoc su loai nguoi             2017     Tri thuc                 Harari                   Lich su        20   
+  4     123003    Ky thuat lap trinh C           2018     Bach khoa Ha Noi         Nhieu tac gia            Lap trinh      15   
+  5     123002    Nha gia kim                    2013     Van hoc                  Paulo Coelho             Van hoc        20   
+  6     123001    Lap trinh C                    2010     Minh Khai                Dennis Ritchie           Lap trinh      10   
  ===============================================================================================================================
-
+  
 =====3 - PHAN NHAP THONG TIN PHIEU MUON========================================
 
  NHAP THONG TIN PHIEU MUON SACH
@@ -169,7 +167,7 @@ need run command "make clean-data" to remove data template.
 
  Nhap lua chon cua ban: 
  
-=====5.1 - MENU DANH SAP XEP PHIEU MUON==================================================
+=====5.1 - MENU DANH SAP XEP PHIEU MUON========================================
 
  DANH SACH PHIEU DANG MUON
 
@@ -179,7 +177,7 @@ need run command "make clean-data" to remove data template.
 
  Nhap lua chon cua ban:
 
-=====5.2 - MENU DANH SAP XEP PHIEU MUON==================================================
+=====5.2 - MENU DANH SAP XEP PHIEU MUON========================================
 
  DANH SACH PHIEU DA TRA
 
@@ -190,7 +188,7 @@ need run command "make clean-data" to remove data template.
 
  Nhap lua chon cua ban:
 
-======5.3 - HIEN THI DANH SACH PHIEU MUON==============================
+======5.3 - HIEN THI DANH SACH PHIEU MUON======================================
 
  DANH SACH PHIEU DANG MUON
 
@@ -206,4 +204,4 @@ need run command "make clean-data" to remove data template.
  | STT | Ma phieu | Ma nguoi muon | Ten nguoi muon         | Ma sach | Ten sach                     | Ngay muon | Ngay tra  | TT sach muon | TT sach tra  | Trang thai |
  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
  =======================================================================================================================================================================
-
+ 
