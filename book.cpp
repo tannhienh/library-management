@@ -66,9 +66,6 @@ void Book::set_author(string author) { strcpy(author_, author.c_str()); }
 // Tra ve ten tac gia
 string Book::get_author() { return author_; }
 
-// Tra ve ten tac gia de sap xep danh sach theo ten
-string Book::get_person_name() { return author_; }
-
 // Gan gia tri cho loai sach
 void Book::set_type(string type) { strcpy(type_, type.c_str()); }
 
@@ -90,7 +87,7 @@ void Book::input_an_info()
   bool check = true; // Gia tri kiem tra nhap dung/sai
 
   // Dong thong bao khi nhap sai
-  char str_error[] = "\n Nhap sai, vui long nhap lai!\n\n";
+  char str_error[] = "\n Nhap sai! vui long nhap lai\n\n";
 
   cin.ignore();
 
@@ -171,7 +168,7 @@ void Book::input_an_info()
   do
   {
     check = true;
-    cout << " Nam xuat ban: ";
+    cout << " Nam xuat ban (NXB > 1900): ";
     cin >> year_;
     try
     {
@@ -283,7 +280,7 @@ void Book::input_an_info()
 }
 
 // Hien thi thong tin sach
-void Book::display_book_info(int i)
+void Book::display_an_info(int i)
 {
   cout << " ";
   cout << " " << setw(5) << left << i;
@@ -297,22 +294,10 @@ void Book::display_book_info(int i)
   cout << endl;
 }
 
-// Hien thi danh sach sach
-void Book::display_book_list(list<Book> books)
-{
-  list<Book>::iterator it;
-  int i = 0;
-  for (it = books.begin(); it != books.end(); it++)
-  {
-    i++;
-    // Hien thi thong tin sach
-    it->display_book_info(i);
-  }
-}
-
 // Hien thi tieu de cot danh sach sach
-void Book::title_books_list()
+void Book::title_list()
 {
+  cout << " " << setfill('=') << setw(127) << "=" << setfill(' ') << endl;
   cout << " ";
   cout << setw(6) << left << "| STT ";
   cout << setw(10) << left << "| Ma sach ";
@@ -323,6 +308,7 @@ void Book::title_books_list()
   cout << setw(15) << left << "| The loai ";
   cout << setw(6) << left << "| SL |";
   cout << endl;
+  cout << " " << setfill('-') << setw(127) << "-" << setfill(' ') << endl;
 }
 
 // Kiem tra chuoi co chua ky tu khong phai chu (so hoac ky tu dac biet)

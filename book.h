@@ -12,7 +12,7 @@
 #include <string.h> // strcpy
 #include <string>
 #include <list>
-#include <algorithm> // sort, reverse
+#include <algorithm> // reverse
 
 using namespace std;
 
@@ -78,9 +78,6 @@ public:
   // Tra ve ten tac gia
   string get_author();
 
-  // Tra ve ten tac gia de sap xep danh sach theo ten
-  string get_person_name();
-
   // Gan gia tri cho the loai sach
   void set_type(string);
 
@@ -98,14 +95,11 @@ public:
   // Nhap thong tin sach
   virtual void input_an_info();
 
-  // Hien thi danh sach sach
-  void display_book_list(list<Book>);
-
   // Xuat thong tin mot sach
-  void display_book_info(int);
+  void display_an_info(int);
 
   // Hien thi tieu de cot danh sach sach
-  void title_books_list();
+  void title_list();
 
   // Kiem tra chuoi co chua so khong
   static bool check_string(string);

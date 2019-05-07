@@ -89,9 +89,6 @@ void Borrow::set_day_borrowed(string day_borrowed)
 // Tra ve ngay muon sach
 string Borrow::get_day_borrowed() { return day_borrowed_; }
 
-// Tra ve ngay muon sach de sap xep danh sach theo ngay muon
-string Borrow::get_year() { return day_borrowed_; }
-
 // Gan gia tri cho tinh trang sach khi muosn
 void Borrow::set_status_borrowed_book(string status_borrowed_book)
 {
@@ -137,7 +134,7 @@ void Borrow::input_an_info()
   bool check = true; // Gia tri kiem tra nhap dung/sai
 
   // Dong thong bao khi nhap sai
-  char str_error[] = "\n Nhap sai, vui long nhap lai!\n\n";
+  char str_error[] = "\n Nhap sai! vui long nhap lai\n\n";
 
   cin.ignore();
 
@@ -566,7 +563,7 @@ void Borrow::display_borrowing(int i)
 }
 
 // Xuat thongn tin phieu muon da tra
-void Borrow::display_returned(int i)
+void Borrow::display_an_info(int i)
 {
   cout << " ";
   cout << " " << setw(5) << left << i;
@@ -583,74 +580,10 @@ void Borrow::display_returned(int i)
   cout << endl;
 }
 
-// Xuat danh sach phieu muon theo trang thai
-void Borrow::display_borrow_list(list<Borrow> borrows, string status)
-{
-  list<Borrow>::iterator it;
-  int i = 0;
-  for (it = borrows.begin(); it != borrows.end(); it++)
-    if (it->get_borrow_status() == status)
-    {
-      i++;
-      if (status == "Dang muon")
-        // Hien thi thong tin phieu muon neu status la Dang muon
-        it->display_borrowing(i);
-      else if (status == "Da tra")
-        // Hien thi thong tin phieu muon neu status la Da tra
-        it->display_returned(i);
-    }
-}
-
-// Ghi thong tin phieu muon vao file BORROW_FILE (Danh sach phieu muon)
-void Borrow::write_borrow_info(list<Borrow> write_borrows, string file_name)
-{
-  ofstream out_file;
-  try
-  {
-    out_file.open(file_name, ios::app | ios::binary);
-    if (!out_file)
-      throw "\n  Loi mo file ";
-    // Luu thong tin da nhap vao file
-    out_file.write(reinterpret_cast<char *>(&write_borrows.back()),
-                   sizeof(write_borrows.back()));
-  }
-  catch (const char *str_error)
-  {
-    cout << str_error << file_name << endl;
-    return;
-  }
-  catch (...)
-  {
-    cerr << "\n  Loi ghi file " << file_name;
-  }
-  out_file.close();
-}
-
-// Doc thong tin tu file BORROW_FILE (Danh sach phieu muon)
-void Borrow::read_borrow_info(list<Borrow> &borrows, string file_name)
-{
-  ifstream in_file;
-  try
-  {
-    in_file.open(file_name, ios::binary);
-    if (!in_file)
-      throw "\n  Loi mo file ";
-    Borrow borrow;
-    while (in_file.read(reinterpret_cast<char *>(&borrow), sizeof(borrow)))
-    {
-      // Luu thong tin phieu muon vua doc duoc tu file vao container borrows
-      borrows.push_back(borrow);
-    }
-  }
-  catch (const std::exception &e)
-  {
-    std::cerr << " " << e.what() << '\n';
-  }
-}
-
 // Hien thi tieu de danh sach phieu dang muon
 void Borrow::title_borrowing_list()
 {
+  cout << " " << setfill('=') << setw(140) << "=" << setfill(' ') << endl;
   cout << " ";
   cout << setw(6) << left << "| STT ";
   cout << setw(11) << left << "| Ma phieu ";
@@ -662,11 +595,13 @@ void Borrow::title_borrowing_list()
   cout << setw(15) << left << "| TT sach muon ";
   cout << setw(14) << left << "| Trang thai |";
   cout << endl;
+  cout << " " << setfill('-') << setw(140) << "-" << setfill(' ') << endl;
 }
 
 // Hien thi tieu de danh sach phieu dang muon
-void Borrow::title_returned_list()
+void Borrow::title_list()
 {
+  cout << " " << setfill('=') << setw(167) << "=" << setfill(' ') << endl;
   cout << " ";
   cout << setw(6) << left << "| STT ";
   cout << setw(11) << left << "| Ma phieu ";
@@ -680,4 +615,5 @@ void Borrow::title_returned_list()
   cout << setw(15) << left << "| TT sach tra ";
   cout << setw(14) << left << "| Trang thai |";
   cout << endl;
+  cout << " " << setfill('-') << setw(167) << "-" << setfill(' ') << endl;
 }

@@ -46,10 +46,10 @@ public:
 
   //----------------------------------------------------------------------//
 
-  // Gan gia tri cho ma phieu
+  // Gan gia tri cho ma phieu muon
   void set_borrow_id(string);
 
-  // Tra ve ma phieu
+  // Tra ve ma phieu muon
   string get_borrow_id();
 
   // Gan gia tri cho ma nguoi muon
@@ -81,9 +81,6 @@ public:
 
   // Tra ve ngay muon sach
   string get_day_borrowed();
-
- // Tra ve ngay muon sach de sap xep danh sach theo ngay muon
-  string get_year();
 
   // Gan gia tri cho ngay tra sach
   void set_day_returned(string);
@@ -121,22 +118,13 @@ public:
   void display_borrowing(int);
 
   // Xuat thong tin phieu muon da tra
-  void display_returned(int);
-
-  // Xuat danh sach phieu muon
-  void display_borrow_list(list<Borrow>, string);
-
-  // Ghi thong tin phieu muon vao file BORROW_FILE (Danh sach phieu muon)
-  void write_borrow_info(list<Borrow>, string);
-
-  // Doc thong tin tu file BORROW_FILE (Danh sach phieu muon)
-  void read_borrow_info(list<Borrow> &, string);
+  void display_an_info(int);
 
   // Hien thi tieu de danh sach phieu dang muon
   void title_borrowing_list();
 
   // Hien thi tieu de danh sach phieu muon da tra
-  void title_returned_list();
+  void title_list();
 };
 
 #endif // BORROW_H_
