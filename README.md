@@ -17,7 +17,7 @@ or
 - **Run:**
 > `$ ./main`
 
-- **Remove files object *.o and execute file:**
+- __Remove files object *.o and execute file:__
 > `$ make clean`
 
 - **Remove data file:**
