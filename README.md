@@ -6,9 +6,9 @@ Compiler: GNU C++, MSVC
 
 - **Build:**    
 > `$ make`
-
-or
-
+>
+> or
+>
 > `$ make build`
 
 - **Build Debug:**
