@@ -1,4 +1,4 @@
-## Library Management Console Application
+## Library Management
 
 Compiler: GNU C++, MSVC
 
